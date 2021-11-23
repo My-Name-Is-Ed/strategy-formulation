@@ -4,5 +4,9 @@ using UnityEngine;
 
 public class CanvasBuildings : MonoBehaviour
 {
-    public Camera MainCamera;
+
+    public void ExitMenu()
+    {
+        transform.Find("Canvas").gameObject.SetActive(false);
+    }
 }

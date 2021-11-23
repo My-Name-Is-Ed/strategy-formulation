@@ -7,6 +7,7 @@ public class Building : MonoBehaviour
     public GameObject Prefab;
     public Vector2Int Size;
     private Vector3 PositionNew;
+
     private void Update()
     {
         PositionNew = (Size == Vector2Int.one) 
@@ -22,6 +23,11 @@ public class Building : MonoBehaviour
             GetComponent<LineRenderer>().enabled = false;
         }
     }
+    private void OnMouseDown()
+    {
+        transform.Find("Canvas").gameObject.SetActive(true);
+        Debug.Log("HAHHAHAHHAHAHHA");
+    }
     public void LinePainter()
     {
         GetComponent<LineRenderer>().SetPositions(
@@ -29,13 +35,13 @@ public class Building : MonoBehaviour
             new Vector3(Size.x + PositionNew.x - Size.x/2, .1f, PositionNew.z - Size.y/2),
             new Vector3(Size.x + PositionNew.x - Size.x/2, .1f, Size.y + PositionNew.z - Size.y/2),
             new Vector3(PositionNew.x - Size.x/2, .1f, Size.y + PositionNew.z - Size.y/2)});
-    }
+    }   //Only for Building Mode
     public void lineColor(bool available)
     {
         GetComponent<LineRenderer>().startColor = GetComponent<LineRenderer>().endColor = (available)
             ? Color.green
             : Color.red;
-    }
+    }   //Only for Building Mode
     private void OnDrawGizmos()
     {
         for (int x = 0; x < Size.x; x++)
@@ -46,5 +52,5 @@ public class Building : MonoBehaviour
                 Gizmos.DrawCube(PositionNew + new Vector3(x- Size.x / 2+ 0.5f, 0, y- Size.y / 2 + 0.5f), new Vector3(1, .1f, 1));
             }
         }
-    }
+    }   //Only for Building Mode
 }

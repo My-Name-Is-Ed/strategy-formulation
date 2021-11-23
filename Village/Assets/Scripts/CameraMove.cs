@@ -24,43 +24,52 @@ public class CameraMove : MonoBehaviour
     {
         Vector3 camPos = transform.position;
 
-        if (Input.mousePosition.y >= screenHeight - rangeToMove 
-            && Input.mousePosition.x >= screenWidth - rangeToMove)   //UP RIGHT
+        if ((Input.mousePosition.y >= screenHeight - rangeToMove 
+            && Input.mousePosition.x >= screenWidth - rangeToMove) 
+            || (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D)))         //UP RIGHT
         {
             camPos.x += Time.deltaTime * speedCamera;
+        }
+        else if ((Input.mousePosition.y >= screenHeight - rangeToMove 
+            && Input.mousePosition.x <= rangeToMove) 
+            || (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A)))        //UP LEFT
+        {
+            camPos.z += Time.deltaTime * speedCamera;
+        }
+        else if ((Input.mousePosition.y <= rangeToMove 
+            && Input.mousePosition.x >= screenWidth - rangeToMove) 
+            || (Input.GetKey(KeyCode.S) 
+            && Input.GetKey(KeyCode.D)))         //DOWN RIGHT
+        {
+            camPos.z -= Time.deltaTime * speedCamera;
+        }
+        else if ((Input.mousePosition.y <= rangeToMove 
+            && Input.mousePosition.x <= rangeToMove) 
+            || (Input.GetKey(KeyCode.S) 
+            && Input.GetKey(KeyCode.A)))        //DOWN LEFT
+        {
+            camPos.x -= Time.deltaTime * speedCamera;
         }
         else if (Input.mousePosition.y >= screenHeight - rangeToMove 
-            && Input.mousePosition.x <= rangeToMove)   //UP LEFT
-        {
-            camPos.z += Time.deltaTime * speedCamera;
-        }
-        else if (Input.mousePosition.y <= rangeToMove 
-            && Input.mousePosition.x >= screenWidth - rangeToMove)    //DOWN RIGHT
-        {
-
-            camPos.z -= Time.deltaTime * speedCamera;
-        }
-        else if (Input.mousePosition.y <= rangeToMove 
-            && Input.mousePosition.x <= rangeToMove)    //DOWN LEFT
-        {
-            camPos.x -= Time.deltaTime * speedCamera;
-        }
-        else if (Input.mousePosition.y >= screenHeight - rangeToMove)   //UP
+            || Input.GetKey(KeyCode.W))          //UP
         {
             camPos.x += Time.deltaTime * speedCamera;
             camPos.z += Time.deltaTime * speedCamera;
         }
-        else if (Input.mousePosition.y <= rangeToMove)  // DOWN
+        else if (Input.mousePosition.y <= rangeToMove 
+            || Input.GetKey(KeyCode.S))         // DOWN
         {
             camPos.x -= Time.deltaTime * speedCamera;
             camPos.z -= Time.deltaTime * speedCamera;
         }
-        else if (Input.mousePosition.x >= screenWidth - rangeToMove)    //RIGHT
+        else if (Input.mousePosition.x >= screenWidth - rangeToMove 
+            || Input.GetKey(KeyCode.D))         //RIGHT
         {
             camPos.x += Time.deltaTime * speedCamera;
             camPos.z -= Time.deltaTime * speedCamera;
         }
-        else if (Input.mousePosition.x <= rangeToMove)   //LEFT
+        else if (Input.mousePosition.x <= rangeToMove 
+            || Input.GetKey(KeyCode.A))         //LEFT
         {
             camPos.x -= Time.deltaTime * speedCamera;
             camPos.z += Time.deltaTime * speedCamera;
