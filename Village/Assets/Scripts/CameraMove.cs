@@ -26,13 +26,15 @@ public class CameraMove : MonoBehaviour
 
         if ((Input.mousePosition.y >= screenHeight - rangeToMove 
             && Input.mousePosition.x >= screenWidth - rangeToMove) 
-            || (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D)))         //UP RIGHT
+            || (Input.GetKey(KeyCode.W) 
+            && Input.GetKey(KeyCode.D)))         //UP RIGHT
         {
             camPos.x += Time.deltaTime * speedCamera;
         }
         else if ((Input.mousePosition.y >= screenHeight - rangeToMove 
             && Input.mousePosition.x <= rangeToMove) 
-            || (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A)))        //UP LEFT
+            || (Input.GetKey(KeyCode.W) 
+            && Input.GetKey(KeyCode.A)))        //UP LEFT
         {
             camPos.z += Time.deltaTime * speedCamera;
         }

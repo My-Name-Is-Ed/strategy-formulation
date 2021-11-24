@@ -4,5 +4,7 @@ using UnityEngine;
 
 public static class Service
 {
-    public static bool BuildingMode = false;
+    public static bool buildingMode = false;
+
+    public static Quaternion camera¿ngle = GameObject.FindWithTag("MainCamera").transform.rotation;
 }

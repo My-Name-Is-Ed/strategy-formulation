@@ -5,7 +5,7 @@ using UnityEngine;
 public class BuildingsGrid : MonoBehaviour
 {
     public Vector2Int GridSize = new Vector2Int(10, 10);
-    private Building[,] grid;
+    public static Building[,] grid;
     private Building flyingBuilding;
     public Camera mainCamera;
 
@@ -18,7 +18,7 @@ public class BuildingsGrid : MonoBehaviour
         if (flyingBuilding != null)
             Destroy(flyingBuilding.gameObject);
         flyingBuilding = Instantiate(buildingPrefab);
-        Service.BuildingMode = true;
+        Service.buildingMode = true;
     }
     private void Update()
     {
@@ -46,12 +46,12 @@ public class BuildingsGrid : MonoBehaviour
                 if (available && Input.GetMouseButtonDown(0))
                 {
                     PlaceFlyingBuilding(x,y);
-                    Service.BuildingMode = false;
+                    Service.buildingMode = false;
                 }
                 if (Input.GetMouseButtonDown(1) && flyingBuilding != null)
                 {
                     Destroy(flyingBuilding.gameObject);
-                    Service.BuildingMode = false;
+                    Service.buildingMode = false;
                 }
             }
         }
